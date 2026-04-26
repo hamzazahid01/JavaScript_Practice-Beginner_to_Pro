@@ -23,13 +23,17 @@ addBtn.addEventListener("click", function(){
             li.remove();
         })
 
+        span.addEventListener("click", function(){
+            li.classList.toggle("Completed")
+        })
+
         li.appendChild(span);
         li.appendChild(delBtn);
 
         taskList.appendChild(li);
 
         taskInput.value="";
-        
+
     }
 })
 
