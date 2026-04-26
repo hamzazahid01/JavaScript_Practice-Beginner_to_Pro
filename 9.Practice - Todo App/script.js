@@ -10,10 +10,26 @@ addBtn.addEventListener("click", function(){
     }
 
     if(task){
+
         let li = document.createElement("li");
-        li.textContent=task;
+
+        let span = document.createElement("span");
+        span.innerText=task;
+
+        let delBtn=document.createElement("button");
+        delBtn.innerText="Delete";
+
+        delBtn.addEventListener("click",function(){
+            li.remove();
+        })
+
+        li.appendChild(span);
+        li.appendChild(delBtn);
+
         taskList.appendChild(li);
+
         taskInput.value="";
+        
     }
 })
 
