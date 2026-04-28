@@ -2,6 +2,9 @@
 let addBtn = document.querySelector("#addBtn");
 let taskInput = document.querySelector("#taskInput");
 let taskList = document.querySelector("#taskList");
+let allBtn = document.querySelector("#allBtn");
+let completeBtn = document.querySelector("#completedBtn");
+let pendingBtn = document.querySelector("#pendingBtn");
 
 function saveTasks(){
     let tasks = [];
@@ -34,6 +37,7 @@ addBtn.addEventListener("click", function(){
 
         delBtn.addEventListener("click",function(){
             li.remove();
+            saveTasks();
         })
 
         span.addEventListener("click", function(){
@@ -43,7 +47,7 @@ addBtn.addEventListener("click", function(){
         span.addEventListener("dblclick",function(){
             let newTask = prompt("Edit Task: ",span.innerText);
 
-            if(newTask!==null || newTask==""){
+            if(newTask!==null && newTask==""){
                 span.innerText=newTask;
                 saveTasks();
             }
@@ -56,8 +60,9 @@ addBtn.addEventListener("click", function(){
 
         taskInput.value="";
         saveTasks();
-    }
-})
+    
+        }
+    })
 
 window.addEventListener("load",function(){
     let savedTasks = JSON.parse(localStorage.getItem("tasks"));
@@ -85,7 +90,7 @@ window.addEventListener("load",function(){
             span.addEventListener("dblclick",function(){
                 let newTask = prompt("Edit Task: ",span.innerText);
 
-                if(newTask!==null || newTask==""){
+                if(newTask!==null && newTask==""){
                     span.innerText=newTask;
                     saveTasks();
                 }
@@ -96,17 +101,39 @@ window.addEventListener("load",function(){
 
             taskList.appendChild(li);
 
+           
+
         })
     }
 })
 
-span.addEventListener("dblclick",function(){
-    let newTask = prompt("Edit Task: ",span.innerText);
+        allBtn.addEventListener("click", function(){
+            let display=document.querySelectorAll("#taskList li");
+            display.forEach(li=>{
+                li.style.display="block";
+            })
+        })
 
-    if(newTask!==null || newTask==""){
-        span.innerText=newTask;
-        saveTasks();
-    }
-})
+        completeBtn.addEventListener("click", function(){
+            let display = document.querySelectorAll("#taskList li");
+            display.forEach(li=>{
+                if(li.classList.contains("completed")){
+                    li.style.display="block";
+                }else{
+                   li.style.display="none"; 
+                }
+            })
+        })
+
+        pendingBtn.addEventListener("click", function(){
+            let display = document.querySelectorAll("#taskList li");
+            display.forEach(li=>{
+                if(!li.classList.contains("completed")){
+                    li.style.display="block";
+                }else{
+                    li.style.display="none";
+                }
+            })
+        })
 
 
