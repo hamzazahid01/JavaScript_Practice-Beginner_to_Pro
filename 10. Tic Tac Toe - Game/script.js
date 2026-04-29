@@ -1,8 +1,10 @@
 
 let resetBtn = document.querySelector("#resetBtn");
 let status = document.querySelector("#status");
-
 let cells = document.querySelectorAll(".cell");
+let board = document.querySelector("#board");
+
+let winnerFound = document.createAttribute("#winnerFound");
 
 const winPattern = [
     [0,1,2],
@@ -15,6 +17,8 @@ const winPattern = [
     [2,4,6]
 ];
 
+let alreadyWin = false;
+
 function checkWin(){
 
     winPattern.forEach((pattern)=>{
@@ -25,6 +29,8 @@ function checkWin(){
         
         if(pos1!=="" && pos1==pos2 && pos2==pos3){
             console.log("Winner Found!");
+            winnerFound.innerText=pos1 + " is Winner!!";
+            alreadyWin = true;
             return true;
         }
 
@@ -37,26 +43,30 @@ let player = true;
 cells.forEach((cell)=>{
     cell.addEventListener("click", function(){
 
-        if(cell.innerText!=""){
-            return;
+        if(!alreadyWin){
+
+            if(cell.innerText!=""){
+                return;
+            }
+
+            if(player){
+                cell.innerText = "0";
+                status.innerText = "Player X Turn";
+                player=false;
+                console.log("Player 1 clicked");
+            }
+            else{
+                cell.innerText = "X";
+                status.innerText = "Player 0 Turn";
+                player=true;
+                console.log("player 2 clicked")
+            }
+
+            checkWin();
+
         }
 
-        if(player){
-             cell.innerText = "0";
-             status.innerText = "Player X Turn";
-             player=false;
-             console.log("Player 1 clicked");
-        }
-        else{
-            cell.innerText = "X";
-            status.innerText = "Player 0 Turn";
-            player=true;
-            console.log("player 2 clicked")
-        }
-
-        checkWin();
-
+        })
     })
-})
 
 
