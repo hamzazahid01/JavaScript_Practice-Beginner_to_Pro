@@ -2,9 +2,6 @@
 let resetBtn = document.querySelector("#resetBtn");
 let status = document.querySelector("#status");
 let cells = document.querySelectorAll(".cell");
-let board = document.querySelector("#board-container");
-
-let winnerFound = document.createElement("h2");
 
 const winPattern = [
     [0,1,2],
@@ -29,18 +26,30 @@ function checkWin(){
         
         if(pos1!=="" && pos1==pos2 && pos2==pos3){
             console.log("Winner Found!");
-            winnerFound.innerText=pos1 + " is Winner!!";
+            status.innerText=pos1 + " is Winner!!";
             alreadyWin = true;
 
             cells[pattern[0]].classList.add("win");
             cells[pattern[1]].classList.add("win");
             cells[pattern[2]].classList.add("win");
 
-            board.insertBefore(winnerFound,resetBtn);
             return true;
         }
 
     })
+}
+
+function checkDraw(){
+    let cellCount=0;
+    cells.forEach((cell)=>{
+        if(cell.innerText!=""){
+            cellCount++;
+        }
+    })
+    if(cellCount==9){
+        status.innerText="Draw!!!";
+        return true;
+    }   
 }
 
 
@@ -56,19 +65,20 @@ cells.forEach((cell)=>{
             }
 
             if(player){
-                cell.innerText = "0";
+                cell.innerText = "O";
                 status.innerText = "Player X Turn";
                 player=false;
                 console.log("Player 1 clicked");
             }
             else{
                 cell.innerText = "X";
-                status.innerText = "Player 0 Turn";
+                status.innerText = "Player O Turn";
                 player=true;
                 console.log("player 2 clicked")
             }
 
             checkWin();
+            checkDraw();
 
         }
 
@@ -79,7 +89,10 @@ cells.forEach((cell)=>{
 resetBtn.addEventListener("click", function(){
     cells.forEach((cell)=>{
         cell.innerText="";
-        alreadyWin=false;
         cell.classList.remove("win");
     })
+    alreadyWin=false;
+    status.innerText="Player O Turn";
+    player = true;
 })
+
