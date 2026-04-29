@@ -115,3 +115,9 @@ h1 {
     background: #00b894;
     transform: scale(1.1);
 }
+
+.win {
+    background: #00b894;
+    color: white;
+    transform: scale(1.1);
+}

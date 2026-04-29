@@ -31,6 +31,11 @@ function checkWin(){
             console.log("Winner Found!");
             winnerFound.innerText=pos1 + " is Winner!!";
             alreadyWin = true;
+
+            cells[pattern[0]].classList.add("win");
+            cells[pattern[1]].classList.add("win");
+            cells[pattern[2]].classList.add("win");
+
             board.insertBefore(winnerFound,resetBtn);
             return true;
         }
