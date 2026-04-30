@@ -3,6 +3,12 @@ let resetBtn = document.querySelector("#resetBtn");
 let status = document.querySelector("#status");
 let cells = document.querySelectorAll(".cell");
 
+let win1=0;
+let win2=0;
+
+let player1 = document.querySelector("#player1");
+let player2 = document.querySelector("#player2");
+
 const winPattern = [
     [0,1,2],
     [3,4,5],
@@ -33,8 +39,21 @@ function checkWin(){
             cells[pattern[1]].classList.add("win");
             cells[pattern[2]].classList.add("win");
 
+            if(pos1=="O"){
+                win1++;
+            } else if(pos1=="X"){
+                win2++;
+            }
+
+            player1.innerText="Player O wins: " + win1;
+            player2.innerText="Player X wins: " + win2; 
+            
+            console.log(player1.innerText);
+
             return true;
         }
+
+
 
     })
 }
@@ -65,10 +84,12 @@ cells.forEach((cell)=>{
             }
 
             if(player){
-                cell.innerText = "O";
-                status.innerText = "Player X Turn";
-                player=false;
-                console.log("Player 1 clicked");
+
+                    cell.innerText = "O";
+                    status.innerText = "Player X Turn";
+                    player=false;
+                    console.log("Player 1 clicked");
+
             }
             else{
                 cell.innerText = "X";
@@ -93,6 +114,7 @@ resetBtn.addEventListener("click", function(){
     })
     alreadyWin=false;
     status.innerText="Player O Turn";
-    player = true;
+    player = false;
 })
+
 
