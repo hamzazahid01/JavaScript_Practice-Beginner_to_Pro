@@ -10,6 +10,9 @@ let url = "https://official-joke-api.appspot.com/random_joke";
 
 async function getJoke(){
     const response = await fetch(url);
-    console.log(response);
+    let data = await response.json();
+    console.log(data);
+    console.log(data.setup);
+    console.log(data.punchline);
 }
 getJoke();
