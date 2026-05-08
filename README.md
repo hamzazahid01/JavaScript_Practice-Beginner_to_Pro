@@ -37,11 +37,13 @@ Topics Covered:
     - Static Methods  
     - Private Properties 
 
-  - Learned and practiced Callbacks
-  - Understood Promises
-  - Implemented Async / Await
-  - Converted callback logic into cleaner async code
-  - Fixed promise syntax and async flow issues 
+  - Asynchronous JavaScript
+    - Callbacks  
+    - Promises  
+    - Async / Await  
+    - API handling using Fetch  
+    - Error handling in async code  
+    - Improved understanding of async flow and promise structure 
 
  Goal:
   To master JavaScript fundamentals and build real-world frontend projects.
