@@ -1,4 +1,4 @@
-let url = "https://official-joke-api.appspot.com/random_joke";
+let url = "https://official-joke-api.appspot.com/randm_joke";
 
 // fetch(url)
 //     .then((response)=>{
@@ -9,10 +9,15 @@ let url = "https://official-joke-api.appspot.com/random_joke";
 //     });
 
 async function getJoke(){
-    const response = await fetch(url);
-    let data = await response.json();
-    console.log(data);
-    console.log(data.setup);
-    console.log(data.punchline);
+    try{
+        const response = await fetch(url);
+        let data = await response.json();
+        console.log(data);
+        console.log(data.setup);
+        console.log(data.punchline);
+    } catch(error){
+        console.log("Error Alert");
+        console.log(error);
+    }
 }
 getJoke();
